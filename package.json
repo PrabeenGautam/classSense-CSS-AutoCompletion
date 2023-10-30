@@ -9,15 +9,69 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:html",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "classsense.helloWorld",
-        "title": "Hello World"
+        "command": "classSense.cache",
+        "title": "Cache CSS files"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "ClassSense: CSS Class Completion",
+      "properties": {
+        "classSense.excludeFolders": {
+          "type": "array",
+          "default": [
+            "**/.git/**",
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/.hg/**",
+            "**/.svn/**"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Folders to exclude from CSS file search."
+        },
+        "classSense.filesToScan": {
+          "type": "string",
+          "default": "**/*.{html,jsx,tsx}",
+          "description": "Pattern for file search (Glob pattern). Reload window after changing this setting. Defaults to **/*.{html,jsx,tsx}"
+        },
+        "classSense.classAttributes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "class",
+            "className",
+            "ngClass"
+          ],
+          "markdownDescription": "The attributes to provide class completions."
+        },
+        "classSense.showSuggestions": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable autocomplete suggestions.",
+          "scope": "language-overridable",
+          "order": 1
+        },
+        "classSense.enableEmmetSupport": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enables completion for Emmet abbreviations."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
