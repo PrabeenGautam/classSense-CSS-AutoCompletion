@@ -2,7 +2,7 @@ import { StatusBarAlignment, ThemeColor } from 'vscode';
 import { NotificationPriority } from '../enum';
 
 export interface NotifierTypes {
-  message: string;
+  message?: string;
   tooltip?: string;
   icon?: string;
   priority?: NotificationPriority;

@@ -6,8 +6,8 @@ export function activate(context: vscode.ExtensionContext) {
   const notifier = new ServiceNotifier({ command: Command.CACHE });
 
   notifier.notify({
-    message: 'Notification Message',
-    tooltip: 'Tooltip Text',
+    tooltip: 'Refresh ClassSense cache',
+    // icon: 'sync~spin',
   });
 }
 

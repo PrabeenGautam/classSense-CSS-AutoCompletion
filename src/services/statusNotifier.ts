@@ -14,9 +14,9 @@ class ServiceNotifier {
   }
 
   public notify({
-    message,
+    message = 'ClassSense',
     tooltip,
-    icon = 'rocket',
+    icon = 'check-all',
     priority = NotificationPriority.INFO,
     color = new ThemeColor('statusBarItem.foreground'),
   }: NotifierTypes) {
