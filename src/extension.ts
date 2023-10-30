@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import ServiceNotifier from './services/serviceNotifier';
+import ServiceNotifier from './services/statusNotifier';
 import { Command } from './enum';
 
 export function activate(context: vscode.ExtensionContext) {
