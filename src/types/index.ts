@@ -1,4 +1,4 @@
-import { StatusBarAlignment, ThemeColor } from 'vscode';
+import { MessageOptions, StatusBarAlignment, ThemeColor } from 'vscode';
 import { NotificationPriority } from '../enum';
 
 export interface NotifierTypes {
@@ -12,4 +12,14 @@ export interface NotifierTypes {
 export interface NotifierConstructor {
   command: string;
   position?: StatusBarAlignment;
+}
+
+export interface MessageOption {
+  message: string;
+  options?: MessageOptions;
+  type?: NotificationPriority;
+  items?: {
+    title: string;
+    callback: () => void;
+  }[];
 }
