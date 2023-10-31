@@ -18,15 +18,15 @@ export function getExcludedFolders() {
   ]);
 }
 
-export function getClassAttributes() {
+export function getClassAttributes(): string {
   return getConfig('classAttributes', ['className', 'class', 'ngClass']);
 }
 
-export function getShowSuggestions() {
+export function getShowSuggestions(): boolean {
   return getConfig('showSuggestions', true);
 }
 
-export function getEmmetSupport() {
+export function getEmmetSupport(): boolean {
   return getConfig('enableEmmetSupport', false);
 }
 

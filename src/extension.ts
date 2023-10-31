@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Command } from './enum';
+import { Command, Configurations } from './enum';
 import ServiceNotifier from './services/statusNotifier';
 import MessageService from './services/messageNotifier';
 import autoCompleteProvider from './providers/AutoCompleteProvider';
@@ -7,6 +7,7 @@ import autoCompleteProvider from './providers/AutoCompleteProvider';
 import { UniqueCSSDefination } from './types';
 import CacheCommand from './providers/CacheCommand';
 import cache from './services/cache';
+import { getShowSuggestions } from './utils/getConfig';
 
 export const messageNotifier = new MessageService();
 export const cacheNotifer = new ServiceNotifier({
@@ -27,7 +28,7 @@ export function getUniqueCSSDefination() {
 const disposables: vscode.Disposable[] = [];
 
 export function activate(context: vscode.ExtensionContext) {
-  disposables.push(autoCompleteProvider());
+  vscode.workspace.onDidChangeConfiguration((event) => {});
 
   context.subscriptions.push(...disposables);
   context.subscriptions.push(CacheCommand());

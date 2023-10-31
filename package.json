@@ -59,13 +59,6 @@
           ],
           "markdownDescription": "The attributes to provide class completions."
         },
-        "classSense.showSuggestions": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Enable autocomplete suggestions.",
-          "scope": "language-overridable",
-          "order": 1
-        },
         "classSense.CSSLanguages": {
           "type": "string",
           "default": "**/*.{css,sass,scss}",
