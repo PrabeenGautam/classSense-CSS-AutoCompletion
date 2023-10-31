@@ -30,6 +30,6 @@ export function getEmmetSupport() {
   return getConfig('enableEmmetSupport', false);
 }
 
-export function getCSSLanguages() {
+export function getCSSLanguages(): string {
   return getConfig('CSSLanguages', '**/*.{css,sass,scss}');
 }
