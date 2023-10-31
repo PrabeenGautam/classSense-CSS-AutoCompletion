@@ -66,11 +66,6 @@
           "scope": "language-overridable",
           "order": 1
         },
-        "classSense.enableEmmetSupport": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enables completion for Emmet abbreviations."
-        },
         "classSense.CSSLanguages": {
           "type": "string",
           "default": "**/*.{css,sass,scss}",
