@@ -12,9 +12,14 @@ export const cacheNotifer = new ServiceNotifier({
 });
 
 let uniqueCSSDefination: UniqueCSSDefination[] = [];
+let caching = false;
 
 export function setUniqueCSSDefination(data: UniqueCSSDefination[]) {
   uniqueCSSDefination = data;
+}
+
+export function getUniqueCSSDefination() {
+  return uniqueCSSDefination;
 }
 
 export function activate(context: vscode.ExtensionContext) {

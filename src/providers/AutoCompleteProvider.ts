@@ -1,12 +1,22 @@
-import { languages, TextDocument, Position, Range } from 'vscode';
+import {
+  languages,
+  TextDocument,
+  Position,
+  CompletionItem,
+  CompletionItemKind,
+} from 'vscode';
 import { getFilesToScan } from '../utils/getConfig';
 import checkClassAttribute from '../utils/checkClassAttribute';
+import { getUniqueCSSDefination } from '../extension';
 
 function autoCompleteProvider() {
   return languages.registerCompletionItemProvider(
     { pattern: getFilesToScan() },
     {
-      provideCompletionItems(document: TextDocument, position: Position) {
+      provideCompletionItems(
+        document: TextDocument,
+        position: Position
+      ): CompletionItem[] {
         const lineText = document.lineAt(position).text;
         const lineTextBeforeCursor = lineText.slice(0, position.character);
 
@@ -17,7 +27,20 @@ function autoCompleteProvider() {
           return [];
         }
 
-        return [];
+        const suggestions = getUniqueCSSDefination().map((defination) => {
+          const { class: cn, existFiles } = defination;
+
+          if (existingClassNames.includes(cn)) {
+            return;
+          }
+
+          const item = new CompletionItem(cn, CompletionItemKind.Value);
+          item.detail = existFiles.join(' | ');
+
+          return item;
+        });
+
+        return suggestions as CompletionItem[];
       },
     }
   );
