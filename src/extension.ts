@@ -9,14 +9,7 @@ export const cacheNotifer = new ServiceNotifier({
 });
 
 export function activate(context: vscode.ExtensionContext) {
-  cacheNotifer.notify({
-    tooltip: 'Refresh ClassSense cache',
-    // icon: 'sync~spin',
-  });
-
-  messageNotifier.showMessage({
-    message: 'ClassSense is now active!',
-  });
+  console.log('Fetehcing Parsable Files');
 }
 
 export function deactivate() {}

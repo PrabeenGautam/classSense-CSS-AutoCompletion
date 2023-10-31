@@ -1,7 +1,7 @@
-import { RelativePattern, workspace } from 'vscode';
+import { RelativePattern, Uri, workspace } from 'vscode';
 import getConfig from '../utils/getConfig';
 
-async function parseFiles() {
+async function parseFiles(): Promise<Uri[]> {
   const workspaceFolders = workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
     return [];
