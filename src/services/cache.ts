@@ -21,7 +21,6 @@ async function cache() {
     });
 
     const fileURI = await parseFiles();
-    cacheNotifer.notify({ icon: 'check-all', tooltip: 'Purge CSS Cache' });
 
     if (!fileURI || fileURI.length === 0) {
       messageNotifier.showMessage({
@@ -76,6 +75,12 @@ async function cache() {
     }
 
     setUniqueCSSDefination([...definations]);
+
+    cacheNotifer.notify({ icon: 'check-all', tooltip: 'Purge CSS Cache' });
+    messageNotifier.showMessage({
+      message: 'ClassSense: CSS Cache Updated',
+      type: NotificationPriority.INFO,
+    });
 
     console.log("\nUnique CSS Defination's: ", definations.length);
     console.log('Total Parsed: ', fileStat.totalParsed);
