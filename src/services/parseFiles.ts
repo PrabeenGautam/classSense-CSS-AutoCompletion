@@ -4,6 +4,7 @@ import * as Bluebird from 'bluebird';
 
 import { getCSSLanguages, getExcludedFolders } from '../utils/getConfig';
 import { fileExist, readFile } from './fileHandler';
+import getConfigFile from '../utils/getConfigFile';
 
 async function parseConfigFiles(
   rootDir: WorkspaceFolder,
@@ -11,17 +12,14 @@ async function parseConfigFiles(
 ): Promise<Uri[]> {
   try {
     const root = rootDir.uri.fsPath;
-    const configFilePath = path.join(root, 'classSense.config.json');
 
     const cssSuggestions = getCSSLanguages();
+    const config = await getConfigFile();
 
-    if (!(await fileExist(configFilePath))) return [];
+    if (!config) return [];
 
-    const fileContent = await readFile(configFilePath);
-    if (!fileContent) return [];
-
-    const config = JSON.parse(fileContent);
     const configFiles = config.filesToScan;
+    if (!configFiles) return [];
 
     const configFilesArray: string[] = Array.isArray(configFiles)
       ? configFiles

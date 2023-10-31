@@ -33,3 +33,7 @@ export interface UniqueCSSDefination {
   class: string;
   existFiles: string[];
 }
+
+export interface ConfigFile {
+  filesToScan?: string | string[];
+}
