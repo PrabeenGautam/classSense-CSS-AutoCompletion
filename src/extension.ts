@@ -28,6 +28,8 @@ const disposables: vscode.Disposable[] = [];
 
 export function activate(context: vscode.ExtensionContext) {
   disposables.push(autoCompleteProvider());
+
+  context.subscriptions.push(...disposables);
   context.subscriptions.push(CacheCommand());
 
   if (!cacheInialized) {
