@@ -22,7 +22,7 @@ function autoCompleteProvider() {
         const lineText = document.lineAt(position).text;
         const lineTextBeforeCursor = lineText.slice(0, position.character);
 
-        const { isInClassAttribute, existingClassNames } =
+        const { isInClassAttribute } =
           checkClassAttribute(lineTextBeforeCursor);
 
         if (!isInClassAttribute) {

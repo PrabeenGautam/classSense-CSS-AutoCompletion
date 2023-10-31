@@ -1,5 +1,5 @@
 import { RelativePattern, Uri, workspace } from 'vscode';
-import { getExcludedFolders } from '../utils/getConfig';
+import { getCSSLanguages, getExcludedFolders } from '../utils/getConfig';
 
 async function parseFiles(): Promise<Uri[]> {
   const workspaceFolders = workspace.workspaceFolders;
@@ -8,11 +8,12 @@ async function parseFiles(): Promise<Uri[]> {
   }
 
   const excludeFolders: string[] = getExcludedFolders();
+  const cssLangauges = getCSSLanguages();
 
   const excludedGlob = `{${excludeFolders.join(',')}}`;
   const rootPath = workspaceFolders[0];
 
-  const filePattern = new RelativePattern(rootPath, `**/*.css`);
+  const filePattern = new RelativePattern(rootPath, cssLangauges);
   const combinedPattern = new RelativePattern(rootPath, excludedGlob);
 
   return await workspace.findFiles(filePattern, combinedPattern);

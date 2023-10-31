@@ -20,6 +20,7 @@
   "contributes": {
     "commands": [
       {
+        "category": "ClassSense",
         "command": "classSense.cache",
         "title": "Cache CSS files"
       }
@@ -69,6 +70,11 @@
           "type": "boolean",
           "default": false,
           "description": "Enables completion for Emmet abbreviations."
+        },
+        "classSense.CSSLanguages": {
+          "type": "string",
+          "default": "**/*.{css,sass,scss}",
+          "description": "Pattern for file search (Glob pattern). Defaults to **/*.{css,sass,scss}"
         }
       }
     }

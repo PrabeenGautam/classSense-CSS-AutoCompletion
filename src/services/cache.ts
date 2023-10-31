@@ -92,6 +92,8 @@ async function cache() {
       type: NotificationPriority.ERROR,
       items: [{ title: 'Refesh', callback: () => {} }],
     });
+
+    console.log('Error in parsing', error);
   }
 }
 

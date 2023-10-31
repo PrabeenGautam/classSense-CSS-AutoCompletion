@@ -21,3 +21,15 @@ export function getExcludedFolders() {
 export function getClassAttributes() {
   return getConfig('classAttributes', ['className', 'class', 'ngClass']);
 }
+
+export function getShowSuggestions() {
+  return getConfig('showSuggestions', true);
+}
+
+export function getEmmetSupport() {
+  return getConfig('enableEmmetSupport', false);
+}
+
+export function getCSSLanguages() {
+  return getConfig('CSSLanguages', '**/*.{css,sass,scss}');
+}

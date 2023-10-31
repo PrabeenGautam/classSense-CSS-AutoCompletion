@@ -5,7 +5,8 @@ import MessageService from './services/messageNotifier';
 import autoCompleteProvider from './providers/AutoCompleteProvider';
 
 import { UniqueCSSDefination } from './types';
-import CacheCommand, { tryCache } from './providers/CacheCommand';
+import CacheCommand from './providers/CacheCommand';
+import cache from './services/cache';
 
 export const messageNotifier = new MessageService();
 export const cacheNotifer = new ServiceNotifier({
@@ -29,8 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
   disposables.push(autoCompleteProvider());
   context.subscriptions.push(CacheCommand(caching));
 
-  caching = true;
-  tryCache(caching);
+  cache();
 }
 
 function unregisterProviders(
