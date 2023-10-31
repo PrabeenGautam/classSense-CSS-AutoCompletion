@@ -1,8 +1,9 @@
 import { languages, TextDocument, Position, Range } from 'vscode';
 import { getFilesToScan } from '../utils/getConfig';
 import checkClassAttribute from '../utils/checkClassAttribute';
+import CssClassDefinition from '../common/CssClassDefinition';
 
-function autoCompleteProvider() {
+function autoCompleteProvider(defination: CssClassDefinition[]) {
   return languages.registerCompletionItemProvider(
     { pattern: getFilesToScan() },
     {
