@@ -74,7 +74,6 @@ async function parseFiles(): Promise<Uri[]> {
   const rootPath = workspaceFolders[0];
 
   const configFiles = await parseConfigFiles(rootPath, excludedGlob);
-  console.log(configFiles);
   if (configFiles.length > 0) return configFiles;
 
   const filePattern = new RelativePattern(rootPath, cssLangauges);
