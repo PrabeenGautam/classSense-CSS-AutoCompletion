@@ -9,6 +9,8 @@ import { getFilesToScan } from '../utils/getConfig';
 import checkClassAttribute from '../utils/checkClassAttribute';
 import { getUniqueCSSDefination } from '../extension';
 
+const triggerChars = ['"', "'", ' ', '`', '{'];
+
 function autoCompleteProvider() {
   return languages.registerCompletionItemProvider(
     { pattern: getFilesToScan() },
@@ -30,9 +32,9 @@ function autoCompleteProvider() {
         const suggestions = getUniqueCSSDefination().map((defination) => {
           const { class: cn, existFiles } = defination;
 
-          if (existingClassNames.includes(cn)) {
+          /*    if (existingClassNames.includes(cn)) {
             return;
-          }
+          } */
 
           const item = new CompletionItem(cn, CompletionItemKind.Value);
           item.detail = existFiles.join(' | ');
@@ -42,7 +44,8 @@ function autoCompleteProvider() {
 
         return suggestions as CompletionItem[];
       },
-    }
+    },
+    ...triggerChars
   );
 }
 
