@@ -1,7 +1,23 @@
 import { workspace } from 'vscode';
 
-function getConfig(key: string, defaultValue?: any) {
+export function getConfig(key: string, defaultValue?: any) {
   return workspace.getConfiguration('classSense').get(key, defaultValue);
 }
 
-export default getConfig;
+export function getFilesToScan() {
+  return getConfig('filesToScan', '**/*.{html,js,ts,jsx,tsx}');
+}
+
+export function getExcludedFolders() {
+  return getConfig('excludeFolders', [
+    '**/.git/**',
+    '**/node_modules/**',
+    '**/dist/**',
+    '**/.hg/**',
+    '**/.svn/**',
+  ]);
+}
+
+export function getClassAttributes() {
+  return getConfig('classAttributes', ['className', 'class', 'ngClass']);
+}

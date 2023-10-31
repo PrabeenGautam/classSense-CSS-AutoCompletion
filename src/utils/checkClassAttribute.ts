@@ -1,5 +1,5 @@
 import getClassFromText from './getClassFromText';
-import getConfig from './getConfig';
+import { getClassAttributes } from './getConfig';
 
 const startCondition = ["='", '="', '={`', '=`'];
 
@@ -10,11 +10,7 @@ interface ReturnProp {
 
 function checkClassAttribute(lineText: string): ReturnProp {
   // Get User Config to provide autosuggestion for defined attributes
-  const classAttributes = getConfig('classAttributes', [
-    'className',
-    'class',
-    'ngClass',
-  ]);
+  const classAttributes = getClassAttributes();
 
   const existingClassAttributes = classAttributes.filter(
     (className: string) => {

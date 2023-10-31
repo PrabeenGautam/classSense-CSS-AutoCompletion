@@ -1,5 +1,5 @@
 import { RelativePattern, Uri, workspace } from 'vscode';
-import getConfig from '../utils/getConfig';
+import { getExcludedFolders } from '../utils/getConfig';
 
 async function parseFiles(): Promise<Uri[]> {
   const workspaceFolders = workspace.workspaceFolders;
@@ -7,13 +7,7 @@ async function parseFiles(): Promise<Uri[]> {
     return [];
   }
 
-  const excludeFolders: string[] = getConfig('excludeFolders', [
-    '**/.git/**',
-    '**/node_modules/**',
-    '**/dist/**',
-    '**/.hg/**',
-    '**/.svn/**',
-  ]);
+  const excludeFolders: string[] = getExcludedFolders();
 
   const excludedGlob = `{${excludeFolders.join(',')}}`;
   const rootPath = workspaceFolders[0];

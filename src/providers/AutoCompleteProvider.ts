@@ -1,10 +1,10 @@
 import { languages, TextDocument, Position, Range } from 'vscode';
-import getConfig from '../utils/getConfig';
+import { getFilesToScan } from '../utils/getConfig';
 import checkClassAttribute from '../utils/checkClassAttribute';
 
 function autoCompleteProvider() {
   return languages.registerCompletionItemProvider(
-    { pattern: getConfig('filesToScan', '**/*.{html,js,ts,jsx,tsx}') },
+    { pattern: getFilesToScan() },
     {
       provideCompletionItems(document: TextDocument, position: Position) {
         const lineText = document.lineAt(position).text;
