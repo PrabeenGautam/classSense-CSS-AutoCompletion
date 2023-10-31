@@ -2,9 +2,6 @@ import { languages, TextDocument, Position, Range } from 'vscode';
 import { getFilesToScan } from '../utils/getConfig';
 import checkClassAttribute from '../utils/checkClassAttribute';
 
-// Use this for autocomplete
-import { cssDefination } from '../extension';
-
 function autoCompleteProvider() {
   return languages.registerCompletionItemProvider(
     { pattern: getFilesToScan() },

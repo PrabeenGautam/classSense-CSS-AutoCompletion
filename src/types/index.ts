@@ -23,3 +23,13 @@ export interface MessageOption {
     callback: () => void;
   }[];
 }
+
+export interface CSSDefination {
+  file: string;
+  classNames: string[];
+}
+
+export interface UniqueCSSDefination {
+  class: string;
+  existFiles: string[];
+}

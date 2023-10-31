@@ -3,15 +3,19 @@ import { Command } from './enum';
 import ServiceNotifier from './services/statusNotifier';
 import MessageService from './services/messageNotifier';
 import autoCompleteProvider from './providers/AutoCompleteProvider';
-import CssClassDefinition from './common/CssClassDefinition';
 import cache from './services/cache';
+import { UniqueCSSDefination } from './types';
 
 export const messageNotifier = new MessageService();
 export const cacheNotifer = new ServiceNotifier({
   command: Command.CACHE,
 });
 
-export let cssDefination: CssClassDefinition[] = [];
+let uniqueCSSDefination: UniqueCSSDefination[] = [];
+
+export function setUniqueCSSDefination(data: UniqueCSSDefination[]) {
+  uniqueCSSDefination = data;
+}
 
 export function activate(context: vscode.ExtensionContext) {
   cache();
