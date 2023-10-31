@@ -2,11 +2,26 @@
   "name": "classsense",
   "displayName": "classSense",
   "description": "",
-  "version": "0.0.1",
+  "icon": "images/icon.png",
+  "version": "1.0.0",
+  "publisher": "PrabinGautam",
+  "repository": {
+    "url": "https://github.com/PrabeenGautam/classSense-CSS-AutoCompletion"
+  },
   "engines": {
     "vscode": "^1.83.0"
   },
+  "keywords": [
+    "html",
+    "css",
+    "class",
+    "autocomplete",
+    "completion",
+    "intelligence",
+    "react"
+  ],
   "categories": [
+    "Programming Languages",
     "Other"
   ],
   "activationEvents": [
@@ -22,7 +37,7 @@
       }
     ],
     "configuration": {
-      "title": "ClassSense: CSS Class Completion",
+      "title": "ClassSense",
       "properties": {
         "classSense.excludeFolders": {
           "type": "array",
