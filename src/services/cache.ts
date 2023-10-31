@@ -4,6 +4,7 @@ import CssClassDefinition from '../common/CssClassDefinition';
 import { NotificationPriority } from '../enum';
 import { cacheNotifer, messageNotifier } from '../extension';
 import parseFiles from './parseFiles';
+import ExtractorGateway from './ExtractorGateway';
 
 async function cache() {
   try {
@@ -29,13 +30,27 @@ async function cache() {
     const definitions: CssClassDefinition[] = [];
     const fileStat = {
       totalParsed: 0,
-      failedLogs: 0,
+      failedLogs: '',
       failedCount: 0,
     };
 
     try {
       // TODO: fetch all css class definitions
-      // await Bluebird.map(fileURI, async (uri) => {});
+      await Bluebird.map(
+        fileURI,
+        async (uri) => {
+          try {
+            await ExtractorGateway(uri);
+          } catch (error) {
+            console.log('Error in parsing', error);
+            fileStat.failedLogs += `Failed to parse ${uri.fsPath}`;
+            fileStat.failedCount += 1;
+          }
+
+          fileStat.totalParsed += 1;
+        },
+        { concurrency: 20 }
+      );
     } catch (error) {
       console.log('Error in parsing', error);
       throw error;
