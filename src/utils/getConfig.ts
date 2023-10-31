@@ -4,11 +4,11 @@ export function getConfig(key: string, defaultValue?: any) {
   return workspace.getConfiguration('classSense').get(key, defaultValue);
 }
 
-export function getFilesToScan() {
+export function getFilesToScan(): string {
   return getConfig('filesToScan', '**/*.{html,js,ts,jsx,tsx}');
 }
 
-export function getExcludedFolders() {
+export function getExcludedFolders(): string[] {
   return getConfig('excludeFolders', [
     '**/.git/**',
     '**/node_modules/**',
@@ -18,7 +18,7 @@ export function getExcludedFolders() {
   ]);
 }
 
-export function getClassAttributes(): string {
+export function getClassAttributes(): string[] {
   return getConfig('classAttributes', ['className', 'class', 'ngClass']);
 }
 
@@ -31,5 +31,5 @@ export function getEmmetSupport(): boolean {
 }
 
 export function getCSSLanguages(): string {
-  return getConfig('CSSLanguages', '**/*.{css,sass,scss}');
+  return getConfig('includeLanguages', '**/*.{css,sass,scss}');
 }

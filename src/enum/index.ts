@@ -8,6 +8,7 @@ export enum Configurations {
   CLASS_ATTRIBUTES = 'classSense.classAttributes',
   SHOW_SUGGESTIONS = 'classSense.showSuggestions',
   ENABLE_EMMET_SUPPORT = 'classSense.enableEmmetSupport',
+  CSS_LANGUAGES = 'classSense.includeLanguages',
 }
 
 export enum NotificationPriority {

@@ -10,11 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:html",
-    "onLanguage:javascript",
-    "onLanguage:typescript",
-    "onLanguage:javascriptreact",
-    "onLanguage:typescriptreact"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -45,7 +41,7 @@
         "classSense.filesToScan": {
           "type": "string",
           "default": "**/*.{html,jsx,tsx}",
-          "description": "Pattern for file search (Glob pattern). Reload window after changing this setting. Defaults to **/*.{html,jsx,tsx}"
+          "description": "Pattern for file search (Glob pattern). Defaults to **/*.{html,jsx,tsx}"
         },
         "classSense.classAttributes": {
           "type": "array",
@@ -59,7 +55,7 @@
           ],
           "markdownDescription": "The attributes to provide class completions."
         },
-        "classSense.CSSLanguages": {
+        "classSense.includeLanguages": {
           "type": "string",
           "default": "**/*.{css,sass,scss}",
           "description": "Pattern for file search (Glob pattern). Defaults to **/*.{css,sass,scss}"
