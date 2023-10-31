@@ -2,7 +2,7 @@ import { commands } from 'vscode';
 import { Command } from '../enum';
 import cache from '../services/cache';
 
-function CacheCommand(caching: boolean) {
+function CacheCommand() {
   return commands.registerCommand(Command.CACHE, async () => {
     cache();
   });

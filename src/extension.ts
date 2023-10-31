@@ -14,7 +14,7 @@ export const cacheNotifer = new ServiceNotifier({
 });
 
 let uniqueCSSDefination: UniqueCSSDefination[] = [];
-let caching = false;
+let cacheInialized = false;
 
 export function setUniqueCSSDefination(data: UniqueCSSDefination[]) {
   uniqueCSSDefination = data;
@@ -28,9 +28,12 @@ const disposables: vscode.Disposable[] = [];
 
 export function activate(context: vscode.ExtensionContext) {
   disposables.push(autoCompleteProvider());
-  context.subscriptions.push(CacheCommand(caching));
+  context.subscriptions.push(CacheCommand());
 
-  cache();
+  if (!cacheInialized) {
+    cacheInialized = true;
+    cache();
+  }
 }
 
 function unregisterProviders(

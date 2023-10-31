@@ -39,30 +39,25 @@ async function cache() {
       failedCount: 0,
     };
 
-    try {
-      await Bluebird.map(
-        fileURI,
-        async (uri) => {
-          try {
-            const url = uri.fsPath;
-            const basename = path.basename(url);
-            const classNames = await ExtractorGateway(url);
+    await Bluebird.map(
+      fileURI,
+      async (uri) => {
+        try {
+          const url = uri.fsPath;
+          const basename = path.basename(url);
+          const classNames = await ExtractorGateway(url);
 
-            fetchDefination.push({ file: basename, classNames });
-          } catch (error) {
-            console.log('Error in parsing', error);
-            fileStat.failedLogs += `Failed to parse ${uri.fsPath}`;
-            fileStat.failedCount += 1;
-          }
+          fetchDefination.push({ file: basename, classNames });
+        } catch (error) {
+          console.log('Error in parsing', error);
+          fileStat.failedLogs += `Failed to parse ${uri.fsPath}`;
+          fileStat.failedCount += 1;
+        }
 
-          fileStat.totalParsed += 1;
-        },
-        { concurrency: 20 }
-      );
-    } catch (error) {
-      console.log('Error in parsing', error);
-      throw error;
-    }
+        fileStat.totalParsed += 1;
+      },
+      { concurrency: 20 }
+    );
 
     const definations: UniqueCSSDefination[] = [];
 
@@ -87,13 +82,15 @@ async function cache() {
     console.log('Failed Count: ', fileStat.failedCount);
     console.log('Failed Logs: ', fileStat.failedLogs || 'No Failed Logs');
   } catch (error) {
+    const errorMessage = 'Failed to parse CSS files. Retry again';
+
     messageNotifier.showMessage({
-      message: 'Failed to parse CSS files. Retry again',
+      message: errorMessage,
       type: NotificationPriority.ERROR,
-      items: [{ title: 'Refesh', callback: () => {} }],
+      items: [{ title: 'Refesh', callback: () => cache() }],
     });
 
-    console.log('Error in parsing', error);
+    console.log(errorMessage, error);
   }
 }
 
